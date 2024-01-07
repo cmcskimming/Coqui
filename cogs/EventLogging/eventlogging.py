@@ -40,20 +40,7 @@ class eventLogging(commands.Cog):
                 break
 
         await member.send(custom_message)
-
-    @commands.Cog.listener()
-    async def log_action(self, guild, moderator, action, target, reason=None):
-        log_channel_id = 1193092709896945664
-        log_channel = guild.get_channel(log_channel_id)
-
-        if log_channel:
-            log_message = f"**{action}**\n" \
-                            f"Moderator: {moderator.mention}\n" \
-                            f"Target: {target.mention}\n" \
-                            f"Reason: {reason or 'Not specified'}"
-
-            await log_channel.send(log_message)
-
+        
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         log_channel_id = 1193092709896945664
@@ -67,26 +54,26 @@ class eventLogging(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        # Replace 'message_id' with the ID of the message you sent in choose_roles
+    # Replace 'message_id' with the ID of the message you sent in choose_roles
         if payload.message_id == 1193123808119365694:
             guild = self.bot.get_guild(payload.guild_id)
-            member = guild.get_member(payload.user_id)
+        member = guild.get_member(payload.user_id)
 
-            if payload.emoji.name == '🌍':
-                role = discord.utils.get(guild.roles, name='PR.FN | Universal')
-                await member.add_roles(role)
-            elif payload.emoji.name == '🚀':
-                role = discord.utils.get(guild.roles, name='PR.FN | Renegade Raiders')
-                await member.add_roles(role)
-            elif payload.emoji.name == '🦖':
-                role = discord.utils.get(guild.roles, name='PR.FN | Preds')
-                await member.add_roles(role)
-            elif payload.emoji.name == '🛡️':
-                role = discord.utils.get(guild.roles, name='CoC | Recruit')
-                await member.add_roles(role)
-            elif payload.emoji.name == '👾':
-                role = discord.utils.get(guild.roles, name='PR.FN | Senpais')
-                await member.add_roles(role)
+        if payload.emoji.name == '🌍':
+            role = discord.utils.get(guild.roles, name='PR.FN | Universal')
+            await member.add_roles(role)
+        elif payload.emoji.name == '🚀':
+            role = discord.utils.get(guild.roles, name='PR.FN | Renegade Raiders')
+            await member.add_roles(role)
+        elif payload.emoji.name == '🦖':
+            role = discord.utils.get(guild.roles, name='PR.FN | Preds')
+            await member.add_roles(role)
+        elif payload.emoji.name == '🛡️':
+            role = discord.utils.get(guild.roles, name='CoC | Recruit')
+            await member.add_roles(role)
+        elif payload.emoji.name == '👾':
+            role = discord.utils.get(guild.roles, name='PR.FN | Senpais')
+            await member.add_roles(role)
 
 def setup(bot):
     bot.add_cog(eventLogging(bot))

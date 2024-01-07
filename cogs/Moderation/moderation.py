@@ -7,6 +7,20 @@ class moderation(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
+    @commands.Cog.listener()
+    async def log_action(self, guild, moderator, action, target, reason=None):
+        log_channel_id = 1193092709896945664
+        log_channel = guild.get_channel(log_channel_id)
+
+        if log_channel:
+            log_message = f"**{action}**\n" \
+                            f"Moderator: {moderator.mention}\n" \
+                            f"Target: {target.mention}\n" \
+                            f"Reason: {reason or 'Not specified'}"
+
+            await log_channel.send(log_message)
+
+
     @commands.command(help='Kick a user from the server')
     async def kick(self, ctx, member: discord.Member, *, reason=None):
     # Check if the command author has either of the two moderator roles
@@ -98,6 +112,37 @@ class moderation(commands.Cog):
             await ctx.send(help_message)
         else:
             await ctx.send("You don't have the necessary role to use this command.")
+
+    @commands.command(name='roles', help='Choose roles from a list')
+    async def choose_roles(self, ctx):
+        # Replace 'channel_id' with the actual ID of your roles channel
+        channel_id = 1190452673716179132
+        roles_channel = self.bot.get_channel(channel_id)
+
+        if roles_channel:
+            roles_embed = discord.Embed(
+                title='Choose Your Roles',
+                description='React to the messages below to choose your roles:',
+                color=0x3498db
+            )
+
+            roles_embed.add_field(name='🌍 PR.FN | Universal', value='React with 🌍 to get the PR.FN | Universal role', inline=False)
+            roles_embed.add_field(name='🚀 PR.FN | Renegade Raiders', value='React with 🚀 to get the PR.FN | Renegade Raiders role', inline=False)
+            roles_embed.add_field(name='🦖 PR.FN | Preds', value='React with 🦖 to get the PR.FN | Preds role', inline=False)
+            roles_embed.add_field(name='🛡️ CoC | Recruit', value='React with 🛡️ to get the CoC | Recruit role', inline=False)
+            roles_embed.add_field(name='👾 PR.FN | Senpais', value='React with 👾 to get the PR.FN | Senpais role', inline=False)
+
+            # Increase the font size
+            roles_embed.description = 'React to the messages below to choose your roles:\n'
+            roles_embed.description += ' '.join(
+                [f"** {field.name}** - {field.value}\n" for field in roles_embed.fields]
+            )
+
+            message = await roles_channel.send(embed=roles_embed)
+
+            reactions = ['🌍', '🚀', '🦖', '🛡️', '👾']
+            for reaction in reactions:
+                await message.add_reaction(reaction)
 
 
 
