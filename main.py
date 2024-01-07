@@ -4,9 +4,8 @@ from discord.ext import commands
 import json
 
 from sqlalchemy import create_engine
+# not sure if I need to import psycopg2 but sqlalchemy uses it so I'm just gonna leave this here
 import psycopg2  
-
-engine = create_engine("postgresql+psycopg2://@localhost/edward", echo=True)
 
 prefix = commands.when_mentioned_or('!')
 intents = discord.Intents.all()
@@ -14,6 +13,10 @@ intents = discord.Intents.all()
 bot = commands.Bot(
     command_prefix = '.', intents=intents
 )
+
+# adding database engine to bot object for reference within cogs
+engine = create_engine("postgresql+psycopg2://@localhost/edward", echo=True)
+bot.DB = engine
 
 @bot.event
 async def on_ready():
