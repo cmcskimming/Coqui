@@ -29,4 +29,4 @@ for cogFile in cogFiles:
     except Exception as error:
         print(error)
 
-bot.run(json.load(open('token.json'))['token'])
+bot.run(json.load(open('config.json'))['token'])
