@@ -25,7 +25,7 @@ class eventLogging(commands.Cog):
         admin_channel_id = 1192707501959950336
 
         channel = self.bot.get_channel(channel_id)
-        admin_channel = bot.get_channel(admin_channel_id)
+        admin_channel = self.bot.get_channel(admin_channel_id)
 
         guild = member.guild
         banner_url = "https://i.imgur.com/dnYnfmo.png"
