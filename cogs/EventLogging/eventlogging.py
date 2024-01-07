@@ -8,14 +8,14 @@ class eventLogging(commands.Cog):
     @commands.Cog.listener()
     async def on_invite_create(self, invite):
         channel_id = 1192707501959950336
-        channel = bot.get_channel(channel_id)
+        channel = self.bot.get_channel(channel_id)
         inviter = invite.inviter
         await channel.send(f"Invite {invite.code} created by {inviter.name}#{inviter.discriminator}")
 
     @commands.Cog.listener()
     async def on_invite_delete(self, invite):
         channel_id = 1192707501959950336
-        channel = bot.get_channel(channel_id)
+        channel = self.bot.get_channel(channel_id)
         inviter = invite.inviter
         await channel.send(f"Invite {invite.code} deleted by {inviter.name}#{inviter.discriminator}")
 
@@ -24,7 +24,7 @@ class eventLogging(commands.Cog):
         channel_id = 1190452673531625605
         admin_channel_id = 1192707501959950336
 
-        channel = bot.get_channel(channel_id)
+        channel = self.bot.get_channel(channel_id)
         admin_channel = bot.get_channel(admin_channel_id)
 
         guild = member.guild
@@ -57,7 +57,7 @@ class eventLogging(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         log_channel_id = 1193092709896945664
-        log_channel = bot.get_channel(log_channel_id)
+        log_channel = self.bot.get_channel(log_channel_id)
 
         if log_channel:
             log_message = f"**Member Left**\n" \
@@ -69,7 +69,7 @@ class eventLogging(commands.Cog):
     async def on_raw_reaction_add(self, payload):
         # Replace 'message_id' with the ID of the message you sent in choose_roles
         if payload.message_id == 1193123808119365694:
-            guild = bot.get_guild(payload.guild_id)
+            guild = self.bot.get_guild(payload.guild_id)
             member = guild.get_member(payload.user_id)
 
             if payload.emoji.name == '🌍':
