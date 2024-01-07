@@ -13,5 +13,14 @@ class example(commands.Cog):
     async def test(self, ctx):
         await ctx.send("hi")
 
+#Events
+class eventLogging(commands.Cog):
+    def __init__(self, bot):
+        self.bot: commands.Bot = bot
+
+    @commands.Cog.listener()
+    def __init__(self, bot):
+        self.bot: commands.Bot = bot
+
 def setup(bot):
     bot.add_cog(example(bot))
