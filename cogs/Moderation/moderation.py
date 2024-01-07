@@ -7,7 +7,7 @@ class moderation(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
-    @commands.command(name='kick', help='Kick a user from the server')
+    @commands.command(help='Kick a user from the server')
     async def kick(self, ctx, member: discord.Member, *, reason=None):
     # Check if the command author has either of the two moderator roles
         if any(role.id in mod_role_ids for role in ctx.author.roles):
@@ -20,7 +20,7 @@ class moderation(commands.Cog):
         else:
             await ctx.send("You don't have the necessary role to use this command.")
 
-    @commands.command(name='ban', help='Ban a user from the server')
+    @commands.command(help='Ban a user from the server')
     async def ban(self, ctx, member: discord.Member, *, reason=None):
     # Check if the command author has either of the two moderator roles
         if any(role.id in mod_role_ids for role in ctx.author.roles):
@@ -33,7 +33,7 @@ class moderation(commands.Cog):
         else:
             await ctx.send("You don't have the necessary role to use this command.")
 
-    @commands.command(name='warn', help='Warn a user')
+    @commands.command(help='Warn a user')
     async def warn(self, ctx, member: discord.Member, *, reason=None):
     # Check if the command author has either of the two moderator roles
         if any(role.id in mod_role_ids for role in ctx.author.roles):
@@ -42,7 +42,7 @@ class moderation(commands.Cog):
         else:
             await ctx.send("You don't have the necessary role to use this command.")
 
-    @commands.command(name='mute', help='Mute a user')
+    @commands.command(help='Mute a user')
     async def mute(self, ctx, member: discord.Member):
     # Check if the command author has either of the two moderator roles
         if any(role.id in mod_role_ids for role in ctx.author.roles):
@@ -56,7 +56,7 @@ class moderation(commands.Cog):
         else:
             await ctx.send("You don't have the necessary role to use this command.")
 
-    @commands.command(name='unmute', help='Unmute a user')
+    @commands.command(help='Unmute a user')
     async def unmute(self, ctx, member: discord.Member):
     # Check if the command author has either of the two moderator roles
         if any(role.id in mod_role_ids for role in ctx.author.roles):
@@ -70,7 +70,7 @@ class moderation(commands.Cog):
         else:
             await ctx.send("You don't have the necessary role to use this command.")
 
-    @commands.command(name='unban', help='Unban a user')
+    @commands.command(help='Unban a user')
     async def unban(self, ctx, user_id: int):
     # Check if the command author has either of the two moderator roles
         if any(role.id in mod_role_ids for role in ctx.author.roles):
