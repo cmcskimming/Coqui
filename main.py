@@ -3,6 +3,11 @@ import discord
 from discord.ext import commands
 import json
 
+from sqlalchemy import create_engine
+import psycopg2  
+
+engine = create_engine("postgresql+psycopg2://@localhost/edward", echo=True)
+
 prefix = commands.when_mentioned_or('!')
 intents = discord.Intents.all()
 
