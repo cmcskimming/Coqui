@@ -29,7 +29,7 @@ class eventLogging(commands.Cog):
 
         guild = member.guild
         banner_url = "https://i.imgur.com/dnYnfmo.png"
-        custom_message = "Welcome to {guild.name}! We're excited to have you here. Feel free to reach out if you have any questions or just want to say hello. Don't forget to explore our other communities!"
+        custom_message = f"Welcome to {guild.name}! We're excited to have you here. Feel free to reach out if you have any questions or just want to say hello. Don't forget to explore our other communities!"
 
         await channel.send(f"Welcome to {guild.name}! Dive into discussions, squad up, and enjoy the journey with us. Don't forget to explore our other communities {banner_url}")
 
