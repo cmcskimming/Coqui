@@ -3,23 +3,20 @@ import discord
 
 mod_role_ids = [1190452673074438277, 1190452673074438275]
 
-class moderation(commands.Cog):
-    def __init__(self, bot):
-        self.bot: commands.Bot = bot
-
-@commands.Cog.listener()
 async def log_action(self, guild, moderator, action, target, reason=None):
     log_channel_id = 1193092709896945664
     log_channel = guild.get_channel(log_channel_id)
 
     if log_channel:
         log_message = f"**{action}**\n" \
-                        f"Moderator: {moderator.mention}\n" \
-                        f"Target: {target.mention}\n" \
-                        f"Reason: {reason or 'Not specified'}"
-
+        f"Moderator: {moderator.mention}\n" \
+        f"Target: {target.mention}\n" \
+        f"Reason: {reason or 'Not specified'}"
         await log_channel.send(log_message)
 
+class moderation(commands.Cog):
+    def __init__(self, bot):
+        self.bot: commands.Bot = bot
 
     @commands.command(help='Kick a user from the server')
     async def kick(self, ctx, member: discord.Member, *, reason=None):

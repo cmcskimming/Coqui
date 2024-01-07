@@ -6,6 +6,18 @@ class eventLogging(commands.Cog):
         self.bot: commands.Bot = bot
 
     @commands.Cog.listener()
+    async def log_action(self, guild, moderator, action, target, reason=None):
+        log_channel_id = 1193092709896945664
+        log_channel = guild.get_channel(log_channel_id)
+
+        if log_channel:
+            log_message = f"**{action}**\n" \
+            f"Moderator: {moderator.mention}\n" \
+            f"Target: {target.mention}\n" \
+            f"Reason: {reason or 'Not specified'}"
+            await log_channel.send(log_message)
+
+    @commands.Cog.listener()
     async def on_invite_create(self, invite):
         channel_id = 1192707501959950336
         channel = self.bot.get_channel(channel_id)
