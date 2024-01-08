@@ -6,7 +6,7 @@ import asyncio
 import praw
 import random
 
-class commands(commands.Cog):
+class someCommands(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
@@ -90,4 +90,4 @@ class commands(commands.Cog):
                 await ctx.send("Sorry, I encountered an error while fetching a meme. Please try again later.")
 
 def setup(bot):
-    bot.add_cog(commands(bot))
+    bot.add_cog(someCommands(bot))
