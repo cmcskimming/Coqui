@@ -6,10 +6,6 @@ import asyncio
 import praw
 import random
 
-reddit = praw.Reddit(client_id='kkM8aG_HAYrMKPDwWvO_zw',
- client_secret='x8D7OJ44MsAQqUTpHoXjTHk2YtdgEA',
- user_agent='YOUR_USER_AGENT')
-
 class commands(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
@@ -71,27 +67,6 @@ class commands(commands.Cog):
         await asyncio.sleep(1)
 
         await ctx.send(f"The event '{event_name}' has started!")
-
-
-
-    @commands.command(name='meme', help='Get a random meme')
-    async def get_meme(self, ctx):
-        try:
-            subreddit = reddit.subreddit("memes")
-            memes = list(subreddit.hot())
-
-            random_meme = random.choice(memes)
-
-            embed = discord.Embed(title=random_meme.title, color=0xFF4500)
-            embed.set_image(url=random_meme.url)
-
-            await ctx.send(embed=embed)    
-            
-        except Exception as e:
-            print(f"An error occurred while fetching a meme: {e}")
-        await ctx.send("Sorry, I encountered an error while fetching a meme. Please try again later.")
-
-
 
 def setup(bot):
     bot.add_cog(commands(bot))
