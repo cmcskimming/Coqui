@@ -7,6 +7,8 @@ from sqlalchemy import create_engine
 # not sure if I need to import psycopg2 but sqlalchemy uses it so I'm just gonna leave this here
 import psycopg2  
 
+config = json.load(open('config.json'))
+
 prefix = commands.when_mentioned_or('!')
 intents = discord.Intents.all()
 
@@ -15,7 +17,7 @@ bot = commands.Bot(
 )
 
 # adding database engine to bot object for reference within cogs
-engine = create_engine("postgresql+psycopg2://@localhost/edward", echo=True)
+engine = create_engine(f"postgresql+psycopg2://{config['db_user']}:{config['db_key']}@localhost/{config['db_name']}", echo=True)
 bot.DB = engine
 
 @bot.event
@@ -37,4 +39,4 @@ for cogFile in cogFiles:
     except Exception as error:
         print(error)
 
-bot.run(json.load(open('config.json'))['token'])
+bot.run(config['token'])

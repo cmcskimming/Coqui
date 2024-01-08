@@ -14,13 +14,7 @@ class example(commands.Cog):
         await ctx.send("hi")
 
 #Events
-class eventLogging(commands.Cog):
-    def __init__(self, bot):
-        self.bot: commands.Bot = bot
-
-    @commands.Cog.listener()
-    def __init__(self, bot):
-        self.bot: commands.Bot = bot
+#    @commands.Cog.listener()
 
 def setup(bot):
     bot.add_cog(example(bot))

@@ -33,7 +33,7 @@ class commands(commands.Cog):
         data = response.json()
         await ctx.send(f'"{data["content"]}" - {data["author"]}')
 
-    @commands.command(aliases='commands', help='Show a list of commands with examples')
+    @commands.command(aliases=['commands'], help='Show a list of commands with examples')
     async def show_commands(self, ctx):
         help_message = (
         "List of commands:\n"
