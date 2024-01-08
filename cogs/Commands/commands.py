@@ -72,7 +72,7 @@ class commands(commands.Cog):
 
             await ctx.send(f"The event '{event_name}' has started!")
 
-        @commands.command(name='meme', help='Get a random meme')
+        @commands.command(aliases=['meme'], help='Get a random meme')
         async def get_meme(ctx):
             try:
                 subreddit = reddit.subreddit("memes")
