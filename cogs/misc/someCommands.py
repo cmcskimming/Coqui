@@ -14,8 +14,8 @@ class someCommands(commands.Cog):
             client_secret='x8D7OJ44MsAQqUTpHoXjTHk2YtdgEA',
             user_agent='YOUR_USER_AGENT')
 
-        @commands.command(name='poll', help='Create a poll')
-        async def create_poll(ctx, question, *options):
+        @commands.command(aliases=["poll"], help='Create a poll')
+        async def create_poll(self, ctx, question, *options):
             if len(options) < 2:
                 await ctx.send("You need to provide at least 2 options for the poll.")
                 return
@@ -32,7 +32,7 @@ class someCommands(commands.Cog):
                 await poll_message.add_reaction(emoji)
 
         @commands.command()
-        async def quote(ctx):
+        async def quote(self, ctx):
             response = requests.get('https://api.quotable.io/random')
             data = response.json()
             await ctx.send(f'"{data["content"]}" - {data["author"]}')
@@ -73,7 +73,7 @@ class someCommands(commands.Cog):
             await ctx.send(f"The event '{event_name}' has started!")
 
         @commands.command(aliases=['meme'], help='Get a random meme')
-        async def get_meme(ctx):
+        async def get_meme(self, ctx):
             try:
                 subreddit = reddit.subreddit("memes")
                 memes = list(subreddit.hot())

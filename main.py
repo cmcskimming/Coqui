@@ -33,6 +33,8 @@ for folder in os.listdir("./cogs/"):
         if filename.endswith('.py'):
             cogFiles.append(f"cogs.{folder}.{filename[:-3]}")
 
+print(cogFiles)
+
 for cogFile in cogFiles:
     try:
         bot.load_extension(cogFile)
