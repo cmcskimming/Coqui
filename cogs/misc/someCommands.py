@@ -41,13 +41,14 @@ class someCommands(commands.Cog):
     async def show_commands(self, ctx):
         help_message = (
         "List of commands:\n"
-        "!poll 'question' 'option1' 'option2' ... - Create a poll\n"
-        "!quote - Get a random quote\n"
-        "!countdown <hours> <minutes> <seconds> 'event_name' - Set a countdown to an event\n"
+        ".poll 'question' 'option1' 'option2' ... - Create a poll\n"
+        "   Example: .poll test1, test2, test3"
+        ".quote - Get a random quote\n"
+        ".countdown <hours> <minutes> <seconds> 'event_name' - Set a countdown to an event\n"
         "   Example: !countdown 2 30 0 'New Year's Eve' - Set a countdown for 'New Year's Eve'\n"
-        "!timer <seconds> 'event_name' - Set a timer for an event\n"
+        ".timer <seconds> 'event_name' - Set a timer for an event\n"
         "   Example: !timer 3600 'Work Time' - Set a timer for 'Work Time' for 1 hour\n"
-        "!meme - Get a random meme from Reddit\n"
+        ".meme - Get a random meme from Reddit\n"
         )
 
     @commands.command(name='countdown', help='Set a countdown to an event')
