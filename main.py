@@ -9,16 +9,11 @@ import psycopg2
 
 config = json.load(open('config.json'))
 
-prefix = commands.when_mentioned_or('!')
 intents = discord.Intents.all()
 
 bot = commands.Bot(
     command_prefix = '.', intents=intents
 )
-
-# adding database engine to bot object for reference within cogs
-engine = create_engine(f"postgresql+psycopg2://{config['db_user']}:{config['db_key']}@localhost/{config['db_name']}", echo=True)
-bot.DB = engine
 
 @bot.event
 async def on_ready():
